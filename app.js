@@ -88,7 +88,7 @@ const users = [
   }
 ]
 
-const buisness = [
+const business = [
   {
     "company_name": "ABC Tech Solutions",
     "date_of_establishment": "2020-03-15",
@@ -195,12 +195,12 @@ app.post("/verifyUser", async (req, res) => {
   }
 });
 
-app.post("/verifyBuisness", (req,res) =>{
-  const { name,  buisnessName} = req.body;
-  const buisnessData = buisness.find(buisness => buisness.company_name === name)
+app.post("/verifyBusiness", (req,res) =>{
+  const { name,  businessName: businessName} = req.body;
+  const businessData = business.find(business => business.company_name === name)
 
-  if(buisnessData){
-    if(buisnessData.company_owner_name === buisnessName){
+  if(businessData){
+    if(businessData.company_owner_name === businessName){
       res.send({isVerified: true})
     }else{
       res.send({isVerified: false})
