@@ -161,6 +161,7 @@ app.post("/verifyUser", async (req, res) => {
   try {
     const {idType, name, id_no} = req.body
     const user = users.find(user => user.name === name)
+    console.log(user);
     if(user){
       if(idType === "passport_number"){
         if(user.passport_number === id_no){
@@ -196,11 +197,13 @@ app.post("/verifyUser", async (req, res) => {
 });
 
 app.post("/verifyBusiness", (req,res) =>{
-  const { name,  businessName: businessName} = req.body;
-  const businessData = business.find(business => business.company_name === name)
+  const { name,  businessName} = req.body;
+  const businessData = business.find(business => business.company_owner_name === name)
+  console.log(businessData);
+
 
   if(businessData){
-    if(businessData.company_owner_name === businessName){
+    if(businessData.company_name === businessName){
       res.send({isVerified: true})
     }else{
       res.send({isVerified: false})
