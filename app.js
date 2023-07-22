@@ -157,30 +157,30 @@ app.listen(PORT, () =>{
     console.log(`Server started on port ${PORT}`);
 })
 
-app.post("/user", async (req, res) => {
+app.post("/verifyUser", async (req, res) => {
   try {
     const {idType, name, id_no} = req.body
     const user = users.find(user => user.name === name)
     if(user){
-      if(idType === "passport"){
+      if(idType === "passport_number"){
         if(user.passport_number === id_no){
           res.send({isVerified: true})
         }else{
           res.send({isVerified: false})
         }
-      }else if(idType === "driver_license"){
+      }else if(idType === "driver_license_number"){
         if(user.driver_license_number === id_no){
           res.send({isVerified: true})
         }else{
           res.send({isVerified: false})
         }
-      }else if(idType === "pan"){
+      }else if(idType === "pan_number"){
         if(user.pan_number === id_no){
           res.send({isVerified: true})
         }else{
           res.send({isVerified: false})
         }
-      }else if(idType === "govt_id"){
+      }else if(idType === "govt_id_number"){
         if(user.govt_id_number === id_no){
           res.send({isVerified: true})
         }else{
